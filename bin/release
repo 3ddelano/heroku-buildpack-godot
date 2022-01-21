@@ -3,5 +3,5 @@
 cat << EOF
 ---
 default_process_types:
-  web: cd __site/ && python -m http.server $PORT; eval "while true; do sleep 600; echo "Refreshing dyno"; curl $HEROKU_URL; done"; $BUILD_DIR/godot_server.64 --main-pack "dist/linux.pck"
+  web: (cd __site/ && python -m http.server \$PORT); eval "while true; do sleep 600; echo 'Refreshing dyno'; curl $HEROKU_URL; done"; $BUILD_DIR/godot_server.64 --main-pack "dist/linux.pck"
 EOF
