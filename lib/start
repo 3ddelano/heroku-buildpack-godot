@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-cd $CACHE_DIR/ && godot_headless.64 --main-pack "$OUTPUT_DEST/linux.pck"
