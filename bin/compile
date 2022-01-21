@@ -32,8 +32,6 @@ fi
 
 if [ ! -f $BUILD_DIR/export_presets.cfg ]; then
   echo "You must have a exports_presets.cfg file present and it should have an export named Linux/X11."
-  exit 0
-else
   exit 1
 fi
 
