@@ -21,7 +21,7 @@ function download_godot_templates() {
   GODOT_TEMPLATES_URL=https://downloads.tuxfamily.org/godotengine/${VERSION}/Godot_v${VERSION}-stable_export_templates.tpz
   TEMPLATES_DEST="$CACHE_DIR/editor_data/templates/${VERSION}.stable"
 
-  if [ ! -f $TEMPLATES_DEST/linux_x11_64_releases.zip ]; then
+  if [ ! -f $TEMPLATES_DEST/linux_x11_64_release ]; then
     output_section "Downloading Godot Templates..."
     curl -s $GODOT_TEMPLATES_URL -o godot-templates.zip || exit 1
     unzip -o godot-templates.zip

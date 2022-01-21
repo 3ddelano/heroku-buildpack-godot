@@ -3,5 +3,5 @@
 cat << EOF
 ---
 default_process_types:
-  web: func/start $PORT
+  web: lib/start $PORT
 EOF
