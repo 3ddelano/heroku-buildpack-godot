@@ -19,7 +19,7 @@ function download_godot_headless() {
 function download_godot_templates() {
   local VERSION=$1
   GODOT_TEMPLATES_URL=https://downloads.tuxfamily.org/godotengine/${VERSION}/Godot_v${VERSION}-stable_export_templates.tpz
-  TEMPLATES_DEST="$CACHE_DIR/editor_data/templates/${VERSION}-stable"
+  TEMPLATES_DEST="$CACHE_DIR/editor_data/templates/${VERSION}.stable"
 
   if [ ! -f $TEMPLATES_DEST/webassembly_debug.zip ]; then
     output_section "Downloading Godot Templates..."
@@ -32,7 +32,7 @@ function download_godot_templates() {
     output_section "Using cached Godot HTML5 Templates"
   fi
 
-  # Godot export templates are stored at $CACHE_DIR/editor_data/templates/${VERSION}-stable
+  # Godot export templates are stored at $CACHE_DIR/editor_data/templates/${VERSION}.stable
   output_section "Godot Templates setup done"
 }
 
