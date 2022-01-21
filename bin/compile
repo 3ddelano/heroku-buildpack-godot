@@ -30,6 +30,12 @@ if [ -z "$GODOT_VERSION" ]; then
   exit 1
 fi
 
+
+if [ -z "$HEROKU_URL" ]; then
+  echo "You must set the HEROKU_URL config var to the web URL of the heroku app!"
+  exit 1
+fi
+
 if [ ! -f $BUILD_DIR/export_presets.cfg ]; then
   echo "You must have a exports_presets.cfg file present and it should have an export named Linux/X11."
   exit 1
