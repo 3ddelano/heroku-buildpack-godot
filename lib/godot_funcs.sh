@@ -18,6 +18,7 @@ function download_godot_headless() {
 }
 
 function download_godot_server() {
+  local VERSION=$1
   GODOT_SERVER_URL=https://downloads.tuxfamily.org/godotengine/${VERSION}/Godot_v${VERSION}-stable_linux_server.64.zip
 
   if [ ! -f $CACHE_DIR/godot_server.64 ]; then
