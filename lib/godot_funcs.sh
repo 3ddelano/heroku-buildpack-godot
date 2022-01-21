@@ -7,6 +7,7 @@ function download_godot_headless() {
     curl -s $GODOT_HEADLESS_URL -o godot-headless.zip || exit 1
     unzip -o godot-headless.zip
     cp Godot_v${VERSION}-stable_linux_headless.64 $CACHE_DIR/godot_headless.64
+    cp Godot_v${VERSION}-stable_linux_headless.64 $BUILD_DIR/godot_headless.64
     touch "$CACHE_DIR/._sc_"
   else
     output_section "Using cached Godot v$VERSION Headless executable"
@@ -24,10 +25,14 @@ function download_godot_server() {
     curl -s $GODOT_SERVER_URL -o godot-server.zip || exit 1
     unzip -o godot-server.zip
     cp Godot_v${VERSION}-stable_linux_server.64 $CACHE_DIR/godot_server.64
+    cp Godot_v${VERSION}-stable_linux_server.64 $BUILD_DIR/godot_server.64
     touch "$CACHE_DIR/._sc_"
   else
     output_section "Using cached Godot v$VERSION Server executable"
   fi
+
+  # Godot server is stored at $CACHE_DIR/godot_server.64
+  output_section "Godot Headless setup done"
 }
 
 function download_godot_templates() {
