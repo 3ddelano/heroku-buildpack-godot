@@ -36,5 +36,6 @@ if [ ! -f $BUILD_DIR/export_presets.cfg ]; then
 fi
 
 download_godot_headless $GODOT_VERSION
+download_godot_server $GODOT_VERSION
 download_godot_templates $GODOT_VERSION
 export_godot_project
