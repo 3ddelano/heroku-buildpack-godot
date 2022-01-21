@@ -7,12 +7,11 @@ function download_godot_headless() {
     curl -s $GODOT_HEADLESS_URL -o godot-headless.zip || exit 1
     unzip -o godot-headless.zip
     cp Godot_v${VERSION}-stable_linux_headless.64 $CACHE_DIR/godot_headless.64
-    cp Godot_v${VERSION}-stable_linux_headless.64 $BUILD_DIR/godot_headless.64
     touch "$CACHE_DIR/._sc_"
   else
     output_section "Using cached Godot v$VERSION Headless executable"
   fi
-
+  cp Godot_v${VERSION}-stable_linux_headless.64 $BUILD_DIR/godot_headless.64
   # Godot headless is stored at $CACHE_DIR/godot_headless.64
   output_section "Godot Headless setup done"
 }
@@ -26,12 +25,11 @@ function download_godot_server() {
     curl -s $GODOT_SERVER_URL -o godot-server.zip || exit 1
     unzip -o godot-server.zip
     cp Godot_v${VERSION}-stable_linux_server.64 $CACHE_DIR/godot_server.64
-    cp Godot_v${VERSION}-stable_linux_server.64 $BUILD_DIR/godot_server.64
     touch "$CACHE_DIR/._sc_"
   else
     output_section "Using cached Godot v$VERSION Server executable"
   fi
-
+  cp Godot_v${VERSION}-stable_linux_server.64 $BUILD_DIR/godot_server.64
   # Godot server is stored at $CACHE_DIR/godot_server.64
   output_section "Godot Headless setup done"
 }
@@ -69,5 +67,5 @@ function export_godot_project() {
   # (The project must have a Linux/X11 export template setup)
   # source: $BUILD_DIR
   # destination: $OUTPUT_FILE
-  $CACHE_DIR/godot_headless.64 --path "$BUILD_DIR" --export "Linux/X11" "$OUTPUT_FILE" || exit 1
+  $CACHE_DIR/godot_headless.64 --path "$BUILD_DIR" --export-pack "Linux/X11" "$OUTPUT_FILE" || exit 1
 }
