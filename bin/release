@@ -3,5 +3,5 @@
 cat << EOF
 ---
 default_process_types:
-  web: lib/start $PORT
+  web: cd $CACHE_DIR/ && godot_headless.64 --main-pack "$OUTPUT_DEST/linux.pck"
 EOF
