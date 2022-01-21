@@ -21,7 +21,7 @@ function download_godot_templates() {
   GODOT_TEMPLATES_URL=https://downloads.tuxfamily.org/godotengine/${VERSION}/Godot_v${VERSION}-stable_export_templates.tpz
   TEMPLATES_DEST="$CACHE_DIR/editor_data/templates/${VERSION}.stable"
 
-  if [ ! -f $TEMPLATES_DEST/webassembly_debug.zip ]; then
+  if [ ! -f $TEMPLATES_DEST/linux_x11_64_releases.zip ]; then
     output_section "Downloading Godot Templates..."
     curl -s $GODOT_TEMPLATES_URL -o godot-templates.zip || exit 1
     unzip -o godot-templates.zip
@@ -29,7 +29,7 @@ function download_godot_templates() {
     cp templates/linux_x11_64_debug $TEMPLATES_DEST
     cp templates/linux_x11_64_release $TEMPLATES_DEST
   else
-    output_section "Using cached Godot HTML5 Templates"
+    output_section "Using cached Godot Linux/X11 x64 Templates"
   fi
 
   # Godot export templates are stored at $CACHE_DIR/editor_data/templates/${VERSION}.stable
