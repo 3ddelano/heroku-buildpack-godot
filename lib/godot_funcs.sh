@@ -69,3 +69,10 @@ function export_godot_project() {
   # destination: $OUTPUT_FILE
   $CACHE_DIR/godot_headless.64 --path "$BUILD_DIR" --export-pack "Linux/X11" "$OUTPUT_FILE" || exit 1
 }
+
+function make_simple_webpage() {
+  output_section "Making simple webpage..."
+  mkdir -p $BUILD_DIR/__site
+  touch $BUILD_DIR/__site/index.html
+  echo "<!DOCTYPE html><html><head><title>Godot Server</title></head><body><h1>Godot Server running...</h1><p><a href=\"https://github.com/3ddelano/heroku-buildpack-godot\">Make your own</a></p></body></html>" > $BUILD_DIR/__site/index.html
+}
