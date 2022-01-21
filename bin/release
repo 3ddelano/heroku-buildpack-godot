@@ -3,5 +3,5 @@
 cat << EOF
 ---
 default_process_types:
-  web: ./godot_server.64 --main-pack "dist/linux.pck" --PORT=$1
+  web: ./godot_server.64 --main-pack "dist/linux.pck" --PORT=$PORT
 EOF

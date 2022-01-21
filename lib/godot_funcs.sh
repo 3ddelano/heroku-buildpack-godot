@@ -11,7 +11,7 @@ function download_godot_headless() {
   else
     output_section "Using cached Godot v$VERSION Headless executable"
   fi
-  cp Godot_v${VERSION}-stable_linux_headless.64 $BUILD_DIR/godot_headless.64
+  cp $CACHE_DIR/godot_headless.64 $BUILD_DIR/godot_headless.64
   # Godot headless is stored at $CACHE_DIR/godot_headless.64
   output_section "Godot Headless setup done"
 }
@@ -29,7 +29,7 @@ function download_godot_server() {
   else
     output_section "Using cached Godot v$VERSION Server executable"
   fi
-  cp Godot_v${VERSION}-stable_linux_server.64 $BUILD_DIR/godot_server.64
+  cp $CACHE_DIR/godot_server.64 $BUILD_DIR/godot_server.64
   # Godot server is stored at $CACHE_DIR/godot_server.64
   output_section "Godot Headless setup done"
 }
