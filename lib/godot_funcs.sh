@@ -18,7 +18,7 @@ function download_godot_headless() {
 
 function download_godot_templates() {
   local VERSION=$1
-  GODOT_TEMPLATES_URL=https://downloads.tuxfamily.org/godotengine/${local VERSION=$1}/Godot_v${VERSION}-stable_export_templates.tpz
+  GODOT_TEMPLATES_URL=https://downloads.tuxfamily.org/godotengine/${VERSION}/Godot_v${VERSION}-stable_export_templates.tpz
   TEMPLATES_DEST="$CACHE_DIR/editor_data/templates/${VERSION}-stable"
 
   if [ ! -f $TEMPLATES_DEST/webassembly_debug.zip ]; then
