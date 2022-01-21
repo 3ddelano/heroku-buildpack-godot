@@ -4,10 +4,32 @@ BASEDIR=$(dirname $(dirname "$0"))
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+
+
 source "$BASEDIR/lib/misc_funcs.sh"
 source "$BASEDIR/lib/godot_funcs.sh"
 
-download_godot_headless
-download_godot_templates
+export_env_dir() {
+  env_dir=$1
+  whitelist_regex=${2:-''}
+  blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|JAVA_OPTS)$'}
+  if [ -d "$env_dir" ]; then
+    for e in $(ls $env_dir); do
+      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
+      export "$e=$(cat $env_dir/$e)"
+      :
+    done
+  fi
+}
 
+# Load the ENV variables from Heroku
+export_env_dir $3
+
+if [ -z "$GODOT_VERSION" ]; then
+  echo "You must set the GODOT_VERSION config var to a valid Godot stable release (eg. 3.4.2)!"
+  exit 1
+fi
+
+download_godot_headless $GODOT_VERSION
+download_godot_templates $GODOT_VERSION
 export_godot_project

@@ -1,14 +1,8 @@
 # Heroku Buildpack for Godot Engine
 
-Experimental Heroku Buildpack for Godot Engine 3.4.
+Directly host a Godot server on Heroku directly from the source code without exporting.
 
-Requires HTML5 export named `HTML5` to be able to export and deploy the game.
+# ENV Variables
+- GODOT_VERSION - The version of stable Godot to use (eg. 3.3.4)
 
-# Troubleshooting
-
-If your game is under a subdirectory on your repository, you can use the `git
-subtree` command to export the game to the heroku's root directory.
-
-```
-git subtree push --prefix path/to/project heroku master
-```
+Hybrid of [heroku-buildpack-godot](https://github.com/lethiandev/heroku-buildpack-godot) and [godot-server-buildpack](https://github.com/Abdera7mane/godot-server-buildpack)
