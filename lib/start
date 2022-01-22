@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PORT=$1
+PORT=${1:-${PORT:-3000}}
 
-((cd __site/ && python -m http.server \$PORT) &);
+((cd __site/ && python -m http.server $PORT) &);
 (eval "while true; do sleep 15; echo "Refreshing dyno"; echo $HEROKU_URL; curl $HEROKU_URL; done" &);
 (cd $BUILD_DIR && ./godot_server.64 --main-pack "dist/linux.pck")
