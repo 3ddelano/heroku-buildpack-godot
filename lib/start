@@ -2,6 +2,6 @@
 
 PORT=$1
 
-(cd __site/ && python -m http.server $PORT) &
-eval "while true; do sleep 15; echo "Refreshing dyno"; curl $HEROKU_URL; done" &
-(cd $BUILD_DIR && ./godot_server.64 --main-pack "dist/linux.pck") &
+((cd __site/ && python -m http.server $PORT) &);
+(eval "while true; do sleep 15; echo "Refreshing dyno"; curl $HEROKU_URL; done" &);
+((cd $BUILD_DIR && ./godot_server.64 --main-pack "dist/linux.pck") &);
