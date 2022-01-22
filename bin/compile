@@ -41,8 +41,13 @@ if [ ! -f $BUILD_DIR/export_presets.cfg ]; then
   exit 1
 fi
 
+mkdir -p $BUILD_DIR/lib
+cp $BASEDIR/lib/start $BUILD_DIR/lib/start
+chmod +x $BUILD_DIR/lib/start
+
 download_godot_headless $GODOT_VERSION
 download_godot_server $GODOT_VERSION
 download_godot_templates $GODOT_VERSION
 export_godot_project
+
 make_simple_webpage
