@@ -54,19 +54,16 @@ then
     
     download_godot_headless $GODOT_VERSION
     download_godot_templates $GODOT_VERSION
-    
+    export_godot_project
 elif [ -f $BUILD_DIR/Godotpack ]
 then
+    # Copy pck file to dist/linux.pck
+    
     # Get the file name stored in Godotpack
     pckpath=`cat Godotpack`
     echo pckpath
     cp $pckpath $BUILD_DIR/dist/linux.pck
 fi
+
 download_godot_server $GODOT_VERSION
-export_godot_project
-
-
-
-
-
 make_simple_webpage
