@@ -3,12 +3,12 @@
 # Check if project.godot exists in the repo
 if [ -f $1/project.godot ]
 then
-  echo "Godot"
-  exit 0
+    echo "Godot"
+    exit 0
 elif [ -f $1/Godotpack ]
 then
-  echo "Godot"
-  exit 0
+    echo "Godot"
+    exit 0
 else
-  exit 1
+    exit 1
 fi

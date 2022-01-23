@@ -5,49 +5,68 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 
-
 source "$BASEDIR/lib/misc_funcs.sh"
 source "$BASEDIR/lib/godot_funcs.sh"
 
 export_env_dir() {
-  env_dir=$1
-  whitelist_regex=${2:-''}
-  blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|JAVA_OPTS)$'}
-  if [ -d "$env_dir" ]; then
-    for e in $(ls $env_dir); do
-      echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
-      export "$e=$(cat $env_dir/$e)"
-      :
-    done
-  fi
+    env_dir=$1
+    whitelist_regex=${2:-''}
+    blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|JAVA_OPTS)$'}
+    if [ -d "$env_dir" ]; then
+        for e in $(ls $env_dir); do
+            echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
+            export "$e=$(cat $env_dir/$e)"
+            :
+        done
+    fi
 }
 
 # Load the ENV variables from Heroku
 export_env_dir $3
 
-if [ -z "$GODOT_VERSION" ]; then
-  echo "You must set the GODOT_VERSION config var to a valid Godot stable release (eg. 3.4.2)!"
-  exit 1
-fi
-
-
-if [ -z "$HEROKU_URL" ]; then
-  echo "You must set the HEROKU_URL config var to the web URL of the heroku app!"
-  exit 1
-fi
-
-if [ ! -f $BUILD_DIR/export_presets.cfg ]; then
-  echo "You must have a exports_presets.cfg file present and it should have an export named Linux/X11."
-  exit 1
-fi
-
 mkdir -p $BUILD_DIR/lib
 cp $BASEDIR/lib/start $BUILD_DIR/lib/start
 chmod +x $BUILD_DIR/lib/start
 
-download_godot_headless $GODOT_VERSION
+
+# Ensure GODOT_VERSION is set
+if [ -z "$GODOT_VERSION" ]; then
+    echo "You must set the GODOT_VERSION config var to a valid Godot stable release (eg. 3.4.2)!"
+    exit 1
+fi
+
+# Ensure HEROKU_URL is set
+if [ -z "$HEROKU_URL" ]; then
+    echo "You must set the HEROKU_URL config var to the web URL of the heroku app!"
+    exit 1
+fi
+
+
+if [ -f $BUILD_DIR/project.godot ]
+then
+    # Export from source
+    
+    # Ensure exports_presets.cfg exists
+    if [ ! -f $BUILD_DIR/export_presets.cfg ]; then
+        echo "You must have a exports_presets.cfg file present to export from source and it should have an export named Linux/X11."
+        exit 1
+    fi
+    
+    download_godot_headless $GODOT_VERSION
+    download_godot_templates $GODOT_VERSION
+    
+elif [ -f $BUILD_DIR/Godotpack ]
+then
+    # Get the file name stored in Godotpack
+    pckpath=`cat Godotpack`
+    echo pckpath
+    cp $pckpath $BUILD_DIR/dist/linux.pck
+fi
 download_godot_server $GODOT_VERSION
-download_godot_templates $GODOT_VERSION
 export_godot_project
+
+
+
+
 
 make_simple_webpage
