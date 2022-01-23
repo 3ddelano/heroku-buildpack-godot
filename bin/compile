@@ -61,8 +61,10 @@ then
     
     # Get the file name stored in Godotpack
     pckpath=`cat Godotpack`
-    echo pckpath
-    cp $pckpath $BUILD_DIR/dist/linux.pck
+    echo $pckpath
+    cd $BUILD_DIR
+    mkdir -p dist
+    cp $pckpath dist/linux.pck
 fi
 
 download_godot_server $GODOT_VERSION
