@@ -1,17 +1,18 @@
 function download_godot_headless() {
     local VERSION=$1
     GODOT_HEADLESS_URL=https://downloads.tuxfamily.org/godotengine/${VERSION}/Godot_v${VERSION}-stable_linux_headless.64.zip
+    GODOT_HEADLESS_NAME=Godot_v${VERSION}-stable_linux_headless.64
     
-    if [ ! -f $CACHE_DIR/godot_headless.64 ]; then
+    if [ ! -f $CACHE_DIR/GODOT_HEADLESS_NAME ]; then
         output_section "Downloading Godot Headless v$VERSION"
         curl -s $GODOT_HEADLESS_URL -o godot-headless.zip || exit 1
         unzip -o godot-headless.zip
-        cp Godot_v${VERSION}-stable_linux_headless.64 $CACHE_DIR/godot_headless.64
+        cp Godot_v${VERSION}-stable_linux_headless.64 $CACHE_DIR/GODOT_HEADLESS_NAME
         touch "$CACHE_DIR/._sc_"
     else
         output_section "Using cached Godot v$VERSION Headless executable"
     fi
-    cp $CACHE_DIR/godot_headless.64 $BUILD_DIR/godot_headless.64
+    cp $CACHE_DIR/GODOT_HEADLESS_NAME $BUILD_DIR/godot_headless.64
     # Godot headless is stored at $BUILD_DIR/godot_headless.64
     output_section "Godot Headless setup done"
 }
@@ -19,17 +20,18 @@ function download_godot_headless() {
 function download_godot_server() {
     local VERSION=$1
     GODOT_SERVER_URL=https://downloads.tuxfamily.org/godotengine/${VERSION}/Godot_v${VERSION}-stable_linux_server.64.zip
+    GODOT_SERVER_NAME=Godot_v${VERSION}-stable_linux_server.64
     
-    if [ ! -f $CACHE_DIR/godot_server.64 ]; then
+    if [ ! -f $CACHE_DIR/GODOT_SERVER_NAME ]; then
         output_section "Downloading Godot Server Executable..."
         curl -s $GODOT_SERVER_URL -o godot-server.zip || exit 1
         unzip -o godot-server.zip
-        cp Godot_v${VERSION}-stable_linux_server.64 $CACHE_DIR/godot_server.64
+        cp Godot_v${VERSION}-stable_linux_server.64 $CACHE_DIR/GODOT_SERVER_NAME
         touch "$CACHE_DIR/._sc_"
     else
         output_section "Using cached Godot v$VERSION Server executable"
     fi
-    cp $CACHE_DIR/godot_server.64 $BUILD_DIR/dist/godot_server.64
+    cp $CACHE_DIR/GODOT_SERVER_NAME $BUILD_DIR/dist/godot_server.64
     # Godot server is stored at $BUILD_DIR/dist/godot_server.64
     output_section "Godot Server setup done"
 }
