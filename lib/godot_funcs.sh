@@ -69,7 +69,7 @@ function export_godot_project() {
     # (The project must have a Linux/X11 export template setup)
     # source: $BUILD_DIR
     # destination: $OUTPUT_FILE
-    $CACHE_DIR/godot_headless.64 --path "$BUILD_DIR" --export-pack "Linux/X11" "$OUTPUT_FILE" || exit 1
+    $BUILD_DIR/godot_headless.64 --path "$BUILD_DIR" --export-pack "Linux/X11" "$OUTPUT_FILE" || exit 1
 }
 
 function make_simple_webpage() {
