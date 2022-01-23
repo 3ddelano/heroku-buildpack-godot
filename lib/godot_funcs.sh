@@ -4,7 +4,7 @@ function download_godot_headless() {
     GODOT_HEADLESS_NAME=Godot_v${VERSION}-stable_linux_headless.64
     
     if [ ! -f $CACHE_DIR/GODOT_HEADLESS_NAME ]; then
-        output_section "Downloading Godot Headless v$VERSION"
+        output_section "Downloading Godot Headless v$VERSION executable..."
         curl -s $GODOT_HEADLESS_URL -o godot-headless.zip || exit 1
         unzip -o godot-headless.zip
         cp Godot_v${VERSION}-stable_linux_headless.64 $CACHE_DIR/GODOT_HEADLESS_NAME
@@ -23,7 +23,7 @@ function download_godot_server() {
     GODOT_SERVER_NAME=Godot_v${VERSION}-stable_linux_server.64
     
     if [ ! -f $CACHE_DIR/GODOT_SERVER_NAME ]; then
-        output_section "Downloading Godot Server Executable..."
+        output_section "Downloading Godot Server v$VERSION executable..."
         curl -s $GODOT_SERVER_URL -o godot-server.zip || exit 1
         unzip -o godot-server.zip
         cp Godot_v${VERSION}-stable_linux_server.64 $CACHE_DIR/GODOT_SERVER_NAME

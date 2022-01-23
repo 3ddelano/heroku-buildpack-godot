@@ -37,7 +37,7 @@ fi
 
 # Ensure HEROKU_URL is set
 if [ -z "$HEROKU_URL" ]; then
-    echo "You must set the HEROKU_URL config var to the web URL of the heroku app!"
+    echo "You must set the HEROKU_URL config var to the web URL of the heroku app (eg. https://your-app-name-here.herokuapp.com)!"
     exit 1
 fi
 
@@ -57,8 +57,6 @@ then
 elif [ -f $BUILD_DIR/Godotpack ]
 then
     # Copy pck file to dist/linux.pck
-    
-    # Get the file name stored in Godotpack
     pckpath=`cat $BUILD_DIR/Godotpack`
     mkdir -p $BUILD_DIR/dist
     cp $BUILD_DIR/$pckpath $BUILD_DIR/dist/linux.pck
