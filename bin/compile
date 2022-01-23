@@ -41,7 +41,7 @@ if [ -z "$HEROKU_URL" ]; then
     exit 1
 fi
 
-
+ls $BUILD_DIR
 if [ -f $BUILD_DIR/project.godot ]
 then
     # Export from source
@@ -60,7 +60,7 @@ then
     # Copy pck file to dist/linux.pck
     
     # Get the file name stored in Godotpack
-    pckpath=`cat Godotpack`
+    pckpath=`cat $BUILD_DIR/Godotpack`
     echo $pckpath
     cd $BUILD_DIR
     mkdir -p dist
