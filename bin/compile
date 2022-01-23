@@ -60,8 +60,6 @@ then
     
     # Get the file name stored in Godotpack
     pckpath=`cat $BUILD_DIR/Godotpack`
-    echo "Copying $BUILD_DIR/$pckpath to $BUILD_DIR/dist/linux.pck"
-    echo $BUILD_DIR/$pckpath
     mkdir -p $BUILD_DIR/dist
     cp $BUILD_DIR/$pckpath $BUILD_DIR/dist/linux.pck
 fi

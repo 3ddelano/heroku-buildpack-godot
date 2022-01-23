@@ -4,4 +4,4 @@ PORT=${1:-${PORT:-3000}}
 
 ((cd __site/ && python -m http.server $PORT) &);
 (eval "while true; do sleep 10m; curl -sSf $HEROKU_URL > /dev/null; done" &);
-(cd $BUILD_DIR && ./godot_server.64 --main-pack "dist/linux.pck")
+(cd $BUILD_DIR/dist && ./godot_server.64 --main-pack "linux.pck")
